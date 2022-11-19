@@ -8,4 +8,9 @@ public class MonthlyPlan extends UserPlan {
 		super("Monthly", 100*(isPrivate?2:1));
 		this.recurring = false;
 	}
+	@Override
+	public String getInfo() {
+		return "User Plan: "+this.getType()+";\nSpace Type: "
+				+(this.isPrivate?"Private Slot.\n":"Common Slot.\n");
+	}
 }

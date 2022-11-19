@@ -2,6 +2,7 @@ package System;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -21,7 +22,13 @@ public class Space {
 	public boolean checkNextMonthAvailability() {
 		LocalDateTime startOfNextMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfNextMonth()).atStartOfDay();
 		for(ReserveRecord r:reserveRecordList) {
-			if(r.getStartTime())
+			if(r.getStartTime().isAfter(startOfNextMonth)) {
+				return false;
+			}
 		}
+		return true;
+	}
+	public String getTypeName() {
+		return this.type.getName();
 	}
 }

@@ -21,4 +21,16 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	public String getInfo() {
+		return "User ID: "+this.getId().toString()+";\nRole: "+this.getRole().toString()+"\n";
+	}
+	public String getOpeningMessage() {
+		return "\nHi dear user, this is the management portal for our coworking space.\n"
+				+ "Please type the abbreviation to select one of the following commands.\n"
+				+ "Abbreviation:\t\tCommand:\n"
+				+ "SignIn\t\tSign in;\n"
+				+ "Reg\t\tRegister;\n"
+				+ "Info\t\tView your user information;\n"
+				+ "Exit\t\tExit.\n";
+	}
 }

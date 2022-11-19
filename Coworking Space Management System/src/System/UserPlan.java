@@ -17,4 +17,15 @@ public class UserPlan {
 	public int getRemainHour() {
 		return this.remainHour;
 	}
+	public void consumeRemainHour(int amount ) {
+		if(amount<this.remainHour) {
+			this.remainHour -= amount;
+		}
+		else {
+			System.out.println("Insufficient remaining hours.");
+		}
+	}
+	public String getInfo() {
+		return "User Plan: "+this.getType()+";\nRemain Hours: "+this.remainHour+".\n";
+	}
 }

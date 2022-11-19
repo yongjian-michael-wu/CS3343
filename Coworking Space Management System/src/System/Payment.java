@@ -3,18 +3,16 @@ package System;
 import java.time.*;
 
 public class Payment {
-	private int amount;
-	private LocalTime time;
+	private double amount;
+	private LocalDateTime time;
+	private String description;
+	
 //	private LocalTime paidTime;
 //	private boolean isPaid;
 	
-	public Payment(int amount) {
+	public Payment(double amount, String description) {
 		this.amount = amount;
-		this.time = LocalTime.now();
-//		this.isPaid = false;
-	}
-	
-	public void pay() {
-		
+		this.time = LocalDateTime.now();
+		this.description = description;
 	}
 }
