@@ -27,10 +27,10 @@ public class User {
 	public String getOpeningMessage() {
 		return "\nHi dear user, this is the management portal for our coworking space.\n"
 				+ "Please type the abbreviation to select one of the following commands.\n"
-				+ "Abbreviation:\t\tCommand:\n"
+				+ "Abbreviation:\tCommand:\n"
 				+ "SignIn\t\tSign in;\n"
 				+ "Reg\t\tRegister;\n"
-				+ "Info\t\tView your user information;\n"
+				+ "Info\t\tView the user information;\n"
 				+ "Exit\t\tExit.\n";
 	}
 }

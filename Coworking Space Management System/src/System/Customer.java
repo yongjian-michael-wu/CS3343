@@ -1,5 +1,6 @@
 package System;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Customer extends User {
 		this.plan = new BasicPlan();
 		this.username = username;
 		this.password = password;
-		this.wallet = new Wallet();
+		this.wallet = new Wallet(this);
 		this.reserveHistory = new ArrayList<ReserveRecord>();
 	}
 
@@ -29,7 +30,9 @@ public class Customer extends User {
 	public UserPlan getPlan() {
 		return this.plan;
 	}
-
+	public ArrayList<ReserveRecord> getReserveHistory() {
+		return this.reserveHistory;
+	}
 	public void convertUserPlan(String planName, int param) {
 		if(planName.equals(this.plan.getType())) {
 			System.out.println("Cannot change to the same plan.");
@@ -65,10 +68,20 @@ public class Customer extends User {
 	public String getOpeningMessage() {
 		return "\nHi dear "+this.getUserName()+", this is the management portal for our coworking space.\n"
 				+ "Please type the abbreviation to select one of the following commands.\n"
-				+ "Abbreviation:\t\tCommand:\n"
+				+ "Abbreviation:\tCommand:\n"
 				+ "ChngPlan\tChange your current user plan;\n"
 				+ "SignOut\t\tSign out;\n"
-				+ "Info\t\tView your user information;\n"
-				+ "Exit\t\tExit.\n";
+				+ "Info\t\tView the user information;\n"
+				+ "Exit\t\tExit;\n"
+				+ "TopUp\t\tTop up.\n";
+	}
+	
+	public boolean checkReseveConflict(LocalDateTime startTime,LocalDateTime endTime) {
+		for(ReserveRecord r:reserveHistory) {
+			if(r.checkOverlap(startTime,endTime)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

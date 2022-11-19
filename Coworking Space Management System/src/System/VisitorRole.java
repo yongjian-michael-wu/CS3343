@@ -19,4 +19,20 @@ public class VisitorRole extends Role implements PermissionScheme {
 	public boolean canChangePlan() {
 		return false;
 	}
+	@Override
+	public boolean canSignOut() {
+		return false;
+	}
+	@Override
+	public boolean canTopUp() {
+		return false;
+	}
+	@Override
+	public boolean canCheckPersonalPaymentHistory() {
+		return false;
+	}
+	@Override
+	public boolean canReserver() {
+		return false;
+	}
 }

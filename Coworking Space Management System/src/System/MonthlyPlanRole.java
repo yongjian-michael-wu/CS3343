@@ -18,4 +18,20 @@ public class MonthlyPlanRole extends Role {
 	public boolean canChangePlan() {
 		return false;
 	}
+	@Override
+	public boolean canSignOut() {
+		return true;
+	}
+	@Override
+	public boolean canTopUp() {
+		return true;
+	}
+	@Override
+	public boolean canCheckPersonalPaymentHistory() {
+		return true;
+	}
+	@Override
+	public boolean canReserver() {
+		return true;
+	}
 }

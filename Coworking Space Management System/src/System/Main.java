@@ -20,11 +20,28 @@ public class Main {
 			}
 			else if(cmdList[0].equals("Info")) {
 				CmdCheckUserInfo cmd = new CmdCheckUserInfo();
-				cmd.execute(managementPortal.getCurrentUserRole(), cmdList);
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
 			}
-			else if(cmdList[0].equals("ChngPlan")) {
-				CmdChangeUserPlan cmd = new CmdChangeUserPlan();
-				cmd.execute(managementPortal.getCurrentUserRole(), cmdList);
+//			else if(cmdList[0].equals("ChngPlan")) {
+//				CmdChangeUserPlan cmd = new CmdChangeUserPlan();
+//				String[] paramList = cmd.getParamList();
+//				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+//			}
+			else if(cmdList[0].equals("PayHis")) {
+				CmdCheckPersonalPaymentHistory cmd = new CmdCheckPersonalPaymentHistory();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("SignOut")) {
+				CmdSignOut cmd = new CmdSignOut();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("TopUp")) {
+				CmdTopUp cmd = new CmdTopUp();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
 			}
 			else if(cmdList[0].equals("Exit")) {
 				onGoing=false;

@@ -31,4 +31,13 @@ public class Space {
 	public String getTypeName() {
 		return this.type.getName();
 	}
+	
+	public boolean checkReserveConflict(LocalDateTime startTime,LocalDateTime endTime) {
+		for(ReserveRecord r:reserveRecordList) {
+			if(r.checkOverlap(startTime,endTime)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

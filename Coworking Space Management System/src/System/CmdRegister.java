@@ -16,10 +16,7 @@ public class CmdRegister implements Command {
 	}
 	
 	public void execute(Role role, String[] paramList) {
-		if(paramList==null) {
-			return;
-		}
-		else if(role.canRegister()) {
+		if(role.canRegister()) {
 			ManagementPortal managementPortal = ManagementPortal.getInstance();
 			managementPortal.register(paramList[0], paramList[1]);
 		}
