@@ -31,6 +31,13 @@ public class Space {
 	public String getTypeName() {
 		return this.type.getName();
 	}
+
+	public void addReserveRecord(ReserveRecord reserveRecord) {
+		this.reserveRecordList.add(reserveRecord);
+	}
+	public void removeReserveRecord(ReserveRecord reserveRecord) {
+		this.reserveRecordList.remove(reserveRecord);
+	}
 	
 	public boolean checkReserveConflict(LocalDateTime startTime,LocalDateTime endTime) {
 		for(ReserveRecord r:reserveRecordList) {

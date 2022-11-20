@@ -7,15 +7,18 @@ public class ReserveRecord {
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private Payment payment;
-	private UUID customerId;
-	private UUID recordId;
+	private Customer customer;
+	private Space space;
+	private UUID id;
 	
-	public ReserveRecord(LocalDateTime startTime, LocalDateTime endTime, Payment payment, UUID customerId) {
+	
+	public ReserveRecord(LocalDateTime startTime, LocalDateTime endTime, Payment payment, Customer customer, Space space) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.payment = payment;
-		this.recordId = UUID.randomUUID();
-		this.customerId = customerId;
+		this.id = UUID.randomUUID();
+		this.customer = customer;
+		this.space = space;
 	}
 
 	public LocalDateTime getStartTime() {
@@ -24,7 +27,12 @@ public class ReserveRecord {
 	public LocalDateTime getEndTime() {
 		return this.endTime;
 	}
-	
+	public Space getSpace() {
+		return this.space;
+	}
+	public UUID getId() {
+		return this.id;
+	}
 	
 	public boolean checkOverlap(LocalDateTime startTime, LocalDateTime endTime) {
 		return ((this.startTime.isBefore(startTime)&&this.endTime.isAfter(startTime))

@@ -6,6 +6,14 @@
 //	public CmdChangeUserPlan() {}
 //	
 //	public String[] getParamList() {
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("If you choose to change user plan, system will convert your remaing unused hours to money and top up to your wallet.");
+//		System.out.println("Please type yes to approve or any other key to refuse.");
+//		String response = in.next();
+//		if(!response.equals("yes")) {
+//			System.out.println("Successfully refused.");
+//			return null;
+//		}
 //		String[] paramList = new String[2];
 //		ManagementPortal managementPortal = ManagementPortal.getInstance();
 //		System.out.print("You are currently " + managementPortal.getCurrentUserRole().toString() + "role.\n"
@@ -13,7 +21,6 @@
 //				+ "1. Basic Plan;\n"
 //				+ "2. Package Plan;\n"
 //				+ "3. Monthly Plan;\n");
-//		Scanner in = new Scanner(System.in);
 //		String userPlanIndex = in.next();
 //		paramList[0] = userPlanIndex;
 //		switch(userPlanIndex) {
@@ -23,7 +30,7 @@
 //				System.out.print("Please choose the package size: (type number to choose)\n"
 //						+ "1. 120 HKD for 10 hours;\n"
 //						+ "2. 315 HKD for 30 hours;\n"
-//						+ "3. 450 HKD for 50 hours;\n");
+//						+ "3. 450 HKD for 50 hours.\n");
 //				String packageIndex = in.next();
 //				switch(packageIndex) {
 //					case "1":

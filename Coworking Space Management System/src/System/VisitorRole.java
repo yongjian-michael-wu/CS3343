@@ -32,7 +32,11 @@ public class VisitorRole extends Role implements PermissionScheme {
 		return false;
 	}
 	@Override
-	public boolean canReserver() {
+	public boolean canReserveIndividualSpace() {
 		return false;
+	}
+	@Override
+	public boolean canBuyPackage() {
+		return false; 
 	}
 }

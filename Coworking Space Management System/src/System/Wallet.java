@@ -22,7 +22,7 @@ public class Wallet {
 		managementPortal.addPayment(payment);
 	}
 	
-	public boolean pay(double amount, String description) {
+	public Payment pay(double amount, String description) { 
 		if(amount <= balance ) {
 			balance -= amount;
 			ManagementPortal managementPortal = ManagementPortal.getInstance();
@@ -30,11 +30,11 @@ public class Wallet {
 			paymentHistory.add(payment);
 			managementPortal.addPayment(payment);
 			System.out.println("Paid sucessfully.");
-			return true;
+			return payment;
 		}
 		else {
 			System.out.println("Insufficient balance. Payment failed. ");
-			return false;
+			return null;
 		}
 	}
 	public String getInfo() {

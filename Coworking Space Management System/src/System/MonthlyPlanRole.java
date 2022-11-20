@@ -31,7 +31,11 @@ public class MonthlyPlanRole extends Role {
 		return true;
 	}
 	@Override
-	public boolean canReserver() {
-		return true;
+	public boolean canReserveIndividualSpace() {
+		return false;
+	}
+	@Override
+	public boolean canBuyPackage() {
+		return false; 
 	}
 }

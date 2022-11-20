@@ -3,12 +3,14 @@ package System;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Customer extends User {
 	private String username;
 	private String password;
 	private Wallet wallet;
 	private UserPlan plan;
+	private UserPlan waitingPlan;
 	private ArrayList<ReserveRecord> reserveHistory;
 	
 	public Customer(String username, String password) {
@@ -30,10 +32,27 @@ public class Customer extends User {
 	public UserPlan getPlan() {
 		return this.plan;
 	}
+	public void addRemainHour(int amount) {
+		this.plan.addRemainHour(amount);
+	}
 	public ArrayList<ReserveRecord> getReserveHistory() {
 		return this.reserveHistory;
 	}
-	public void convertUserPlan(String planName, int param) {
+	public void addReserveRecord(ReserveRecord reserveRecord) {
+		this.reserveHistory.add(reserveRecord);
+	}
+	public void removeReserveRecord(ReserveRecord reserveRecord) {
+		this.reserveHistory.remove(reserveRecord);
+	}
+	public ReserveRecord searchReserveRecordById(UUID id) {
+		for(ReserveRecord r:reserveHistory) {
+			if(r.getId().equals(id)) {
+				return r;
+			}
+		}
+		return null;
+	}
+	public void updateUserPlan(String planName, int param) {
 		if(planName.equals(this.plan.getType())) {
 			System.out.println("Cannot change to the same plan.");
 			return;
@@ -49,10 +68,10 @@ public class Customer extends User {
 			this.setRole(PackagePlanRole.getInstant());
 			System.out.println("Convert to package plan successfully.");
 		}
-		else if(planName.equals("Monthly")) {
+//		else if(planName.equals("Monthly")) {
 //			this.plan = new MonthlyPlan();
-			System.out.println("Convert to monthly plan successfully.");
-		}
+//			System.out.println("Convert to monthly plan successfully.");
+//		}
 	}
 	
 	@Override

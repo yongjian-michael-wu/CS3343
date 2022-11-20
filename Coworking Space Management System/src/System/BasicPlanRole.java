@@ -32,7 +32,11 @@ public class BasicPlanRole extends Role {
 		return true;
 	}
 	@Override
-	public boolean canReserver() {
+	public boolean canReserveIndividualSpace() {
 		return true;
+	}
+	@Override
+	public boolean canBuyPackage() {
+		return true; 
 	}
 }

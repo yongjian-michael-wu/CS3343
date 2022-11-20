@@ -26,7 +26,10 @@ public class Role implements PermissionScheme {
 	public boolean canCheckPersonalPaymentHistory() {
 		return false;
 	}
-	public boolean canReserver() {
+	public boolean canReserveIndividualSpace() {
 		return false;
+	}
+	public boolean canBuyPackage() {
+		return false; 
 	}
 }

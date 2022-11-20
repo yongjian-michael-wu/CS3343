@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 
 public class ManagementPortal {
@@ -145,36 +146,110 @@ public class ManagementPortal {
 //		}
 //	}
 	
+	// for CmdBuyPackage class
+	public void buyPackage(String[] paramList) {
+		Customer currentCustomer = (Customer) this.currentUser;
+		String packageIndex = paramList[0];
+		switch(packageIndex) {
+		case "1":
+				if(currentCustomer.getWallet().pay(120, "10 hours package payment.")!=null) {
+				currentCustomer.updateUserPlan("Package", 10);
+			}
+			else {
+				System.out.println("Sorry your balance is insufficient for 10 hours package.");
+			}
+			break;
+		case "2":
+			if(currentCustomer.getWallet().pay(315, "30 hours package payment.")!=null) {
+				currentCustomer.updateUserPlan("Package", 30);
+			}
+			else {
+				System.out.println("Sorry your balance is insufficient for 30 hours package.");
+			}
+			break;
+		case "3":
+			if(currentCustomer.getWallet().pay(450, "50 hours package payment.")!=null) {
+				currentCustomer.updateUserPlan("Package", 50);
+			}
+			else {
+				System.out.println("Sorry your balance is insufficient for 50 hours package.");
+			}
+			break;
+		}
+	}
+	
+	// for CmdCancelReserveRecord class
+	public void cancelReserveRecord(UUID id) {
+		Customer currentCustomer = (Customer) this.currentUser;
+		ReserveRecord reserveRecord = currentCustomer.searchReserveRecordById(id);
+		if(reserveRecord!=null ) {
+			this.reserveRecordList.remove(reserveRecord);
+			currentCustomer.removeReserveRecord(reserveRecord);
+			Space space = reserveRecord.getSpace();
+			space.removeReserveRecord(reserveRecord);
+			System.out.println("Removed successfully.");
+		}
+		else {
+			System.out.println("Cannot find the record by the id provided.");
+		}
+		
+		
+	}
+	
+	
 	public void printOpeningMessage() {
 		System.out.print(this.currentUser.getOpeningMessage());
 	}
 	
-//	public void reserve(String[] paramList) {
-//		LocalDate date = LocalDate.parse(paramList[0]);
-//		LocalTime start = LocalTime.of(Integer.parseInt(paramList[1]),00);
-//		LocalTime end = LocalTime.of(Integer.parseInt(paramList[2]),00);
-//		LocalDateTime startTime = LocalDateTime.of(date,start);
-//		LocalDateTime endTime = LocalDateTime.of(date,end);
-//		Customer currentCustomer = (Customer) currentUser;
-//		if(!currentCustomer.checkReseveConflict(startTime, endTime)) {
-//			System.out.println("Reservation failed. The session you selected is overlaping with another reservation you made.");
-//			return;
-//		}
-//		if(paramList[3]=="1") {
-//			boolean isAvailable = false;
-//			for(Space s:spaceList) {
-//				if(s.getTypeName().equals("Common Slot") && s.checkReserveConflict(startTime, endTime)) {
-//					isAvailable = true;
-//					if(currentCustomer.getWallet().pay(0, null))
-//					ReserveRecord reserveRecord = new ReserveRecord(startTime, endTime);
-//					break;
-//				}
-//			}
-//			if(!isAvailable) {
-//				System.out.println("Reservation failed. No available slot for this session.");
-//			}
-//		}
-//	}
+	// for CmdReserveIndividualSpace class
+	public void reserveIndividualSpace(String[] paramList) {
+		LocalDate date = LocalDate.parse(paramList[0]);
+		int duration = Integer.parseInt(paramList[2])-Integer.parseInt(paramList[1]);
+		LocalTime start = LocalTime.of(Integer.parseInt(paramList[1]),00);
+		LocalTime end = LocalTime.of(Integer.parseInt(paramList[2]),00);
+		LocalDateTime startTime = LocalDateTime.of(date,start);
+		LocalDateTime endTime = LocalDateTime.of(date,end);
+		if(startTime.isBefore(LocalDateTime.now())) {
+			System.out.println("You cannot reserve a past session.");
+			return;
+		}
+		Customer currentCustomer = (Customer) currentUser;
+		if(!currentCustomer.checkReseveConflict(startTime, endTime)) {
+			System.out.println("Reservation failed. The session you selected is overlaping with another reservation you made.");
+			return;
+		}
+		boolean isAvailable = false;
+		for(Space s:spaceList) {
+			if(s.getTypeName().equals("Common Slot") && s.checkReserveConflict(startTime, endTime)) {
+				isAvailable = true;
+				if(currentCustomer.getPlan().consumeRemainHour(duration)) {
+					System.out.println("Reseveation succeeds.");
+					ReserveRecord reserveRecord = new ReserveRecord(startTime, endTime, null, currentCustomer, s);
+					reserveRecordList.add(reserveRecord);
+					currentCustomer.addReserveRecord(reserveRecord);
+					s.addReserveRecord(reserveRecord);
+					return;
+				}
+				else {
+					Payment payment = currentCustomer.getWallet().pay(duration, "Common slot reservation");
+					if(payment!=null) {
+						ReserveRecord reserveRecord = new ReserveRecord(startTime, endTime, payment, currentCustomer, s);
+						reserveRecordList.add(reserveRecord);
+						currentCustomer.addReserveRecord(reserveRecord);
+						s.addReserveRecord(reserveRecord);
+						return;
+					}
+					else {
+						System.out.println("Insufficient balance. Payment failed.");
+						return;
+					}
+				}
+			}
+		}
+		if(!isAvailable) {
+			System.out.println("Reservation failed. No available slot for this session.");
+		}
+	}
 	
 
 	/*
@@ -182,6 +257,12 @@ public class ManagementPortal {
 	 */
 	public void addPayment(Payment payment) {
 		this.paymentList.add(payment);
+	}	
+	/*
+	 * This section is for reservation record management.
+	 */
+	public void addReserveRecord(ReserveRecord reserveRecord) {
+		this.reserveRecordList.add(reserveRecord);
 	}
 	
 	

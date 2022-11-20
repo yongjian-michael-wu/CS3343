@@ -17,13 +17,17 @@ public class UserPlan {
 	public int getRemainHour() {
 		return this.remainHour;
 	}
-	public void consumeRemainHour(int amount ) {
+	public boolean consumeRemainHour(int amount ) {
 		if(amount<this.remainHour) {
 			this.remainHour -= amount;
+			return true;
 		}
 		else {
-			System.out.println("Insufficient remaining hours.");
+			return false;
 		}
+	}
+	public void addRemainHour(int amount) {
+		this.remainHour+=amount;
 	}
 	public String getInfo() {
 		return "User Plan: "+this.getType()+";\nRemain Hours: "+this.remainHour+".\n";

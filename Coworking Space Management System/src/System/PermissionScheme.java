@@ -7,8 +7,8 @@ public interface PermissionScheme {
 	public boolean canTopUp();
 	public boolean canCheckUserInfo();
 	public boolean canCheckPersonalPaymentHistory();
-	public boolean canReserver();
-//	public boolean CanRegister();
+	public boolean canReserveIndividualSpace();
+	public boolean canBuyPackage();
 //	public boolean CanRegister();
 //	public boolean CanRegister();
 //	public boolean CanRegister();
