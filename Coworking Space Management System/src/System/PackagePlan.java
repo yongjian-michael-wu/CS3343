@@ -1,10 +1,12 @@
 package System;
 
-public class PackagePlan extends UserPlan {
-	private int totalHour;
+public class BasicPlan extends UserPlan{
 	
-	public PackagePlan(int totalHour) {
-		super("Package", totalHour);
-		this.totalHour = totalHour;
+	public BasicPlan() {
+		super("Basic", 0);
+	}
+	
+	public BasicPlan(int remainHour) {
+		super("Basic", remainHour);
 	}
 }
