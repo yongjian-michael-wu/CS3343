@@ -5,12 +5,10 @@ public class VisitorRole extends Role implements PermissionScheme {
 	
 	public VisitorRole() {
 		super("Visitor");
-		}
-	
+	}
 	public static VisitorRole getInstance() {
 		return instance;
 	}
-	
 	@Override
 	public boolean canRegister() {
 		return true;
@@ -22,6 +20,10 @@ public class VisitorRole extends Role implements PermissionScheme {
 	@Override
 	public boolean canSignOut() {
 		return false;
+	}
+	@Override
+	public boolean canSignIn() {
+		return true;
 	}
 	@Override
 	public boolean canTopUp() {
@@ -38,5 +40,37 @@ public class VisitorRole extends Role implements PermissionScheme {
 	@Override
 	public boolean canBuyPackage() {
 		return false; 
+	}
+	@Override
+	public boolean canReserveDiscussionRoom() {
+		return false;
+	}
+	@Override
+	public boolean canCancelReserve() {
+		return false;
+	}
+	@Override
+	public boolean canCheckPersonalReserveHistory() {
+		return false;
+	}
+	@Override
+	public boolean canCheckGlobalUserInfo() {
+		return false;
+	}
+	@Override
+	public boolean canCheckGlobalReserveHistory() {
+		return false;
+	}
+	@Override
+	public boolean canCheckGlobalPaymentHistory() {
+		return false;
+	}
+	@Override
+	public boolean canRefund() {
+		return false;
+	}
+	@Override
+	public boolean canChangeGlobalUserInfo() {
+		return true;
 	}
 }

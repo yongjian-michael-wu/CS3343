@@ -1,12 +1,12 @@
 package System;
 
-public class BasicPlan extends UserPlan{
+public class PackagePlan extends UserPlan{
 	
-	public BasicPlan() {
-		super("Basic", 0);
+	public PackagePlan() {
+		super("Package", 0);
 	}
 	
-	public BasicPlan(int remainHour) {
-		super("Basic", remainHour);
+	public PackagePlan(int remainHour) {
+		super("Package", remainHour);
 	}
 }

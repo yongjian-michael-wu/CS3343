@@ -12,16 +12,17 @@ public class CmdRegister implements Command {
 		paramList[0] = in.nextLine();
 		System.out.print("Password:");
 		paramList[1] = in.nextLine();
-		return paramList;
+		return paramList; 
 	}
 	
 	public void execute(Role role, String[] paramList) {
-		if(role.canRegister()) {
+		if(paramList!=null&&role.canRegister()) {
 			ManagementPortal managementPortal = ManagementPortal.getInstance();
-			managementPortal.register(paramList[0], paramList[1]);
+			managementPortal.register(paramList);
 		}
+		else if(paramList==null) {}
 		else {
-			System.out.println("Sorry logged in user cannot register.");
+			System.out.print("Logged in user cannot register.\n");
 		}	
 	}
 }

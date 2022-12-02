@@ -23,13 +23,18 @@ public class Main {
 				String[] paramList = cmd.getParamList();
 				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
 			}
-//			else if(cmdList[0].equals("ChngPlan")) {
-//				CmdChangeUserPlan cmd = new CmdChangeUserPlan();
-//				String[] paramList = cmd.getParamList();
-//				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
-//			}
+			else if(cmdList[0].equals("ChngPlan")) {
+				CmdChangeUserPlan cmd = new CmdChangeUserPlan();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
 			else if(cmdList[0].equals("PayHis")) {
 				CmdCheckPersonalPaymentHistory cmd = new CmdCheckPersonalPaymentHistory();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("ResHis")) {
+				CmdCheckPersonalReserveHistory cmd = new CmdCheckPersonalReserveHistory();
 				String[] paramList = cmd.getParamList();
 				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
 			}
@@ -40,6 +45,56 @@ public class Main {
 			}
 			else if(cmdList[0].equals("TopUp")) {
 				CmdTopUp cmd = new CmdTopUp();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("ResInd")) {
+				CmdReserveIndividualSpace cmd = new CmdReserveIndividualSpace();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("ResDis")) {
+				CmdReserveDiscussionRoom cmd = new CmdReserveDiscussionRoom();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("CanRes")) {
+				CmdCancelReserveRecord cmd = new CmdCancelReserveRecord();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("BuyPac")) {
+				CmdBuyPackage cmd = new CmdBuyPackage();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("PayGlbHis")) {
+				CmdCheckGlobalPaymentHistory cmd = new CmdCheckGlobalPaymentHistory();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("ResGlbHis")) {
+				CmdCheckGlobalReserveHistory cmd = new CmdCheckGlobalReserveHistory();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("ChngGlbInfo")) {
+				CmdChangeGlobalUserInfo cmd = new CmdChangeGlobalUserInfo();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("SignIn")) {
+				CmdSignIn cmd = new CmdSignIn();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("GlbInfo")) {
+				CmdCheckGlobalUserInfo cmd = new CmdCheckGlobalUserInfo();
+				String[] paramList = cmd.getParamList();
+				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
+			}
+			else if(cmdList[0].equals("Refund")) {
+				CmdRefund cmd = new CmdRefund();
 				String[] paramList = cmd.getParamList();
 				cmd.execute(managementPortal.getCurrentUserRole(), paramList);
 			}

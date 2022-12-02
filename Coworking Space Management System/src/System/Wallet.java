@@ -14,10 +14,18 @@ public class Wallet {
 		
 	}
 	
-	public void topUp(double amount) {
+	public double getBalance() {
+		return this.balance;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
+	public void topUp(double amount, String description) {
 		this.balance += amount;
 		ManagementPortal managementPortal = ManagementPortal.getInstance();
-		Payment payment = new Payment(amount, "Top up", this.owner);
+		Payment payment = new Payment(amount, description, this.owner);
 		paymentHistory.add(payment);
 		managementPortal.addPayment(payment);
 	}
@@ -29,20 +37,21 @@ public class Wallet {
 			Payment payment = new Payment(-amount, description, this.owner);
 			paymentHistory.add(payment);
 			managementPortal.addPayment(payment);
-			System.out.println("Paid sucessfully.");
+			System.out.print("Paid sucessfully.\n");
 			return payment;
 		}
 		else {
-			System.out.println("Insufficient balance. Payment failed. ");
+			System.out.print("Insufficient balance. Payment failed.\n");
 			return null;
 		}
 	}
 	public String getInfo() {
-		return "Wallet Balance: " + this.balance + "HKD;";
+		return "Wallet Balance: " + this.balance + "HKD.\n";
 	}
 	public void printPaymentHistory() {
 		System.out.print("Here're all past payment record: ");
 		for(Payment p:paymentHistory) {
+			System.out.println("--------------------------");
 			System.out.print(p.toString());
 		}
 	}

@@ -24,7 +24,7 @@ public class Space {
 		for(ReserveRecord r:reserveRecordList) {
 			if(r.getStartTime().isAfter(startOfNextMonth)) {
 				return false;
-			}
+			} 
 		}
 		return true;
 	}

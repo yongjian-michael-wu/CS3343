@@ -15,7 +15,7 @@ public class CmdTopUp implements Command {
 				paramList[0] = amount+"";
 			}
 			else {
-				System.out.println("Please input a positive number.");
+				System.out.print("Please input a positive number.\n");
 				return null;
 			}
 		}
@@ -29,13 +29,12 @@ public class CmdTopUp implements Command {
 	
 	public void execute(Role role, String[] paramList) {
 		if(paramList!=null && role.canTopUp()) {
-			double amount = Double.parseDouble(paramList[0]);
 			ManagementPortal managementPortal = ManagementPortal.getInstance();
-			Customer currentCustomer = (Customer) managementPortal.getCurrentUser();
-			currentCustomer.getWallet().topUp(amount);
+			managementPortal.topUp(paramList);
 		}
+		else if(paramList==null) {}
 		else {
-			System.out.println(role.toString()+" cannot top up.");
+			System.out.print(role.toString()+" role cannot top up.\n");
 		}
 	}
 }

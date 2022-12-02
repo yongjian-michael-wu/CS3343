@@ -9,9 +9,9 @@ public interface PermissionScheme {
 	public boolean canCheckPersonalPaymentHistory();
 	public boolean canReserveIndividualSpace();
 	public boolean canBuyPackage();
-//	public boolean CanRegister();
-//	public boolean CanRegister();
-//	public boolean CanRegister();
+	public boolean canReserveDiscussionRoom();
+	public boolean canCancelReserve();
+	public boolean canCheckPersonalReserveHistory();
 //	public boolean CanRegister();
 //	public boolean CanRegister();
 //	public boolean CanRegister();

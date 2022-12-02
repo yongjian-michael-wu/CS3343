@@ -17,6 +17,9 @@ public class Role implements PermissionScheme {
 	public boolean canSignOut() {
 		return false;
 	}
+	public boolean canSignIn() {
+		return false;
+	}
 	public boolean canTopUp() {
 		return false;
 	}
@@ -31,5 +34,29 @@ public class Role implements PermissionScheme {
 	}
 	public boolean canBuyPackage() {
 		return false; 
+	}
+	public boolean canReserveDiscussionRoom() {
+		return false;
+	}
+	public boolean canCancelReserve() {
+		return false;
+	}
+	public boolean canCheckPersonalReserveHistory() {
+		return false;
+	}
+	public boolean canCheckGlobalUserInfo() {
+		return false;
+	}
+	public boolean canCheckGlobalReserveHistory() {
+		return false;
+	}
+	public boolean canCheckGlobalPaymentHistory() {
+		return false;
+	}
+	public boolean canRefund() {
+		return false;
+	}
+	public boolean canChangeGlobalUserInfo() {
+		return false;
 	}
 }

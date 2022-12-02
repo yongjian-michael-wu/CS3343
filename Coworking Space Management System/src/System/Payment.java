@@ -20,10 +20,22 @@ public class Payment {
 		this.time = LocalDateTime.now();
 		this.description = description;
 	}
+	public UUID getId() {
+		return this.id;
+	}
+	public Customer getOwner() {
+		return this.owner;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 	public String toString() {
 		return "\nPayment id: " + this.id
 				+";\nPaid Time: " + this.time.toString()
 				+";\nAmount: " + this.amount
 				+";\nDescription: "+this.description+".\n";
+	}
+	public double getAmount() {
+		return this.amount;
 	}
 }
